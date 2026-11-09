@@ -1,7 +1,8 @@
 # URGENT TODO:
 - Cache data locally so we don't have to call API absolutely each time the app is run. (then after add a refresh function)
 - add simple GUI with Raylib
-- add function to retrieve recent workouts and store them in suitable data formats  
+- add function to retrieve recent workouts and store them in suitable data formats
+- add webhook  
 
 ## Feature To Add
 - Latest Stock Data for Take Two Interactive & S&P 500  
