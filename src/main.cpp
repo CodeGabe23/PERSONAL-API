@@ -11,8 +11,6 @@
                     
 using json = nlohmann::json;
 
-// TESTING: 
-// currently just trying to get the total workouts and print it thats all.
 
 int getWorkoutCount(std::string& api_key)
 {
@@ -42,12 +40,18 @@ int getWorkoutCount(std::string& api_key)
 }
 
 
-int main () {
-
+void setup()
+{
   dotenv env(".env");
 
   std::string api_key = env.get("API_KEY");
-  
+}
+
+
+int main () {
+ 
+  setup();
+
   std::cout << getWorkoutCount(api_key) << "\n";
 
 
