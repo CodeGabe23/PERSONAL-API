@@ -3,9 +3,13 @@
 #include <cstdlib>
 #include <fstream>
 #include <unordered_map>
-#include <cpr/cpr.h>
 
+// External dependencies 
+#include <cpr/cpr.h>
+#include "json.hpp"
 #include "dotenv.h" // for retreiving my Hevy API key
+                    
+using json = nlohmann::json;
 
 // TESTING: 
 // currently just trying to get the total workouts and print it thats all.
@@ -23,7 +27,18 @@ int getWorkoutCount(std::string& api_key)
         }
       );
 
-  return 1;
+  if (r.status_code = 200)
+  {
+    json data = json::parse(r.text);
+
+    totalWorkouts = data["workout_count"];
+
+    std::cout << "INFO: workout_count = " << totalWorkouts << std::endl;
+    return totalWorkouts;
+  }
+  
+  std::cout << "ERROR: status code: " << r.status_code << std::endl;
+  return -1;
 }
 
 
@@ -33,7 +48,7 @@ int main () {
 
   std::string api_key = env.get("API_KEY");
   
-  std::cout << getWorkoutCount(api_key);
+  std::cout << getWorkoutCount(api_key) << "\n";
 
 
   return 0;
