@@ -3,6 +3,10 @@
 - add simple GUI with Raylib
 - add function to retrieve recent workouts and store them in suitable data formats  
 
+## Feature To Add
+- Latest Stock Data for Take Two Interactive & S&P 500  
+- YouTube Channel Statistics  
+
 ## About this project
 This project is focused on making an API just about me for me.  
 It will track my health stats and progressions (workouts, PRs, calisthenics), and other things about me to see trends over time on a dashboard.  
