@@ -1,59 +1,70 @@
+// --------------------------------------------------
+//
+//                Gabe's Personal API System
+//               ============================
+//    This displays my health data related to Gym and Calisthenics
+//    and other interesting pieces of data within my life. 
+//
+//    Note: this system can technically be used by other people
+//          if they use the same apps as me (e.g. Hevy for Gym)
+//
+// --------------------------------------------------
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣤⣴⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣦⣤⣤⣤⣀⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⢿⣟⣛⣭⡽⠶⠶⠶⠮⠭⠭⣭⣭⣭⣭⣭⣭⣭⣿⣿⣯⣭⣥⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⢟⣫⣶⠿⣫⣭⣶⠿⠿⣿⣿⣿⠿⢿⣷⣶⣮⣭⣭⣭⣭⣭⣷⣶⣶⣶⣾⣽⣿⣷⣦⡀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣫⣾⣟⣩⣞⣫⣵⣿⣿⣿⣿⣿⣿⣿⣯⢻⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣶⣍⡻⣿⣿⣿⣷⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣵⣿⡿⠿⠛⠛⠛⠛⠿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣣⣿⣿⣿⣿⠿⢿⣿⣷⣼⣿⣿⣿⣇⠀⠀⠀⠀
+// ⠀⠀⠀⠀⢀⣚⣯⣽⣿⣿⣿⣿⢻⣿⣏⡅⠀⠀⠀⠀⠀⠠⣿⣷⣯⡛⣿⣿⣿⣿⣿⣿⡿⠟⠉⠁⠐⣿⣿⣶⣽⣿⣟⣛⡻⠿⣦⡀⠀⠀
+// ⠀⢀⣴⣞⣯⣷⠶⣒⣛⣛⡻⢿⣷⣿⣷⣾⣶⣾⢟⣿⣿⣿⣶⣯⣟⣫⣿⣿⣿⣿⣿⣍⠀⣀⣤⣤⣬⣭⣽⣿⣿⣿⣿⣿⣿⣟⢶⡝⣦⠀
+// ⠀⣿⡿⣾⣿⣵⣿⣿⣿⣿⣿⣷⣾⣭⣽⣿⣭⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⡿⠿⢟⣫⣭⣭⣽⣿⣷⣿⢸⠀
+// ⠀⣿⡇⣿⣿⣿⡿⠿⢟⣴⣬⣛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⣿⣷⣝⣛⢿⣿⣿⣿⣿⣿⣿⡟⣿⣿⣿⢟⣿⢸⠀
+// ⠀⢿⣧⣿⣿⣿⣿⣿⣧⢻⣿⣿⣿⣷⣮⢙⡻⠿⣿⣿⣯⣭⣾⡇⣿⣿⣟⣭⣻⣿⣿⣿⣿⣿⡿⣸⣿⠿⢿⣿⣿⡿⡁⢹⣿⣷⢿⣱⠇⠀
+// ⠀⠀⠻⢷⣝⣿⣿⣿⣿⣧⠉⠻⢿⣿⣿⢸⣿⣿⣷⣶⣭⣝⢛⠿⢿⣿⣿⣿⣿⣿⣯⣙⣛⣭⣾⣿⣿⣿⣿⠿⡋⣾⣿⡈⣿⣿⣿⡏⠀⠀
+// ⠀⠀⠀⠀⠸⣽⣿⣿⣿⣿⣷⡽⣿⣷⣆⢘⠿⣿⣿⣿⣿⣿⢸⣿⣿⣶⣶⣶⡎⣭⣭⣭⣭⡩⣭⣭⣽⣦⣰⣿⣧⢿⣿⡇⣿⣿⣿⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣮⣻⣏⣿⣿⣾⣯⣍⠛⠋⠻⢿⣿⣿⣿⣿⡇⣿⣿⣿⣿⡇⣿⣿⣿⣿⡟⣿⠟⠈⠉⠀⣿⣿⡏⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣾⡿⣿⣿⣿⣿⣿⢦⣴⣦⣬⣍⡛⠛⠈⠛⠛⠛⠛⠁⠙⠛⠛⠉⠀⠀⠀⠀⢠⡆⣿⣿⡇⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣮⣿⡻⣿⢏⣾⣿⢿⣿⣿⣿⣷⣶⣾⣷⣶⣄⣴⣶⣤⡤⣶⣶⡆⣾⡿⡸⣱⣿⣿⡇⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⣷⣝⡻⢶⣽⣻⢿⣿⣷⣭⣝⣻⣿⡿⠿⠿⠏⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⡿⠱⣿⣃⣵⣿⣿⣿⣧⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⢿⣶⣝⡻⢷⣮⣝⡻⢿⣿⣿⣿⣿⣿⣿⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣾⣿⣿⡿⣿⣿⣿⣿⣿⡄⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⢷⣮⣝⡻⢿⣷⣮⣭⣛⣻⠿⠿⣿⣶⣶⣶⣶⣿⣿⣿⠿⢿⣛⣽⣾⣿⡿⣹⣿⣿⡇⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⢿⣾⣶⣭⣽⣛⣛⠿⠿⠶⢶⣶⣶⣶⣶⡿⠿⠿⢟⣛⣭⣷⣿⣿⣿⣿⠇⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠛⠛⠛⠛⠿⠿⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀
+
+
+
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <fstream>
 #include <unordered_map>
+#include <unistd.h>
 
 // External dependencies 
 #include <cpr/cpr.h>
-#include "json.hpp"
 #include "dotenv.h" // for retreiving my Hevy API key
-                    
-using json = nlohmann::json;
 
+#include "profile.h"
 
-int getWorkoutCount(std::string& api_key)
-{
-  std::string url {"https://api.hevyapp.com/v1/workouts/count"};
-  int totalWorkouts{};
-
-  cpr::Response r = cpr::Get(
-      cpr::Url{"https://api.hevyapp.com/v1/workouts/count"},
-      cpr::Header{
-        {"api-key", api_key},
-        {"accept", "application/json"}
-        }
-      );
-
-  if (r.status_code = 200)
-  {
-    json data = json::parse(r.text);
-
-    totalWorkouts = data["workout_count"];
-
-    std::cout << "INFO: workout_count = " << totalWorkouts << std::endl;
-    return totalWorkouts;
-  }
-  
-  std::cout << "ERROR: status code: " << r.status_code << std::endl;
-  return -1;
-}
+// Globals
+std::string API_KEY;
 
 
 void setup()
 {
   dotenv env(".env");
-
-  std::string api_key = env.get("API_KEY");
+  API_KEY = env.get("API_KEY");
 }
 
-
-int main () {
- 
+int main () 
+{
+  // init
   setup();
+  Profile profile(API_KEY);
 
-  std::cout << getWorkoutCount(api_key) << "\n";
+  profile.loop();
 
-
+  std::cout << "See you next time, " << profile.username << "\n\n";
   return 0;
 }
