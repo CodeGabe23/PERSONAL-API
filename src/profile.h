@@ -150,7 +150,7 @@ public:
     {
       std::string userInput = greetUser();
 
-      if (userInput == "3") return;
+      if (userInput == "3") break;
 
       else if (userInput == "1") 
       {
