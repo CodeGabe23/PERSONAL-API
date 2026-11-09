@@ -1,4 +1,4 @@
-#### URGENT TODO:
+# URGENT TODO:
 - Cache data locally so we don't have to call API absolutely each time the app is run.
 - add simple GUI with Raylib
 - add function to retrieve recent workouts and store them in suitable data formats  
