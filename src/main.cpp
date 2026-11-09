@@ -32,39 +32,43 @@
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠛⠛⠛⠛⠿⠿⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀
 
 
-
-
+// STD stuff
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <fstream>
-#include <unordered_map>
 #include <unistd.h>
 
 // External dependencies 
 #include <cpr/cpr.h>
 #include "dotenv.h" // for retreiving my Hevy API key
 
+// My API System
 #include "profile.h"
 
 // Globals
 std::string API_KEY;
 
 
+// run once
 void setup()
 {
   dotenv env(".env");
   API_KEY = env.get("API_KEY");
 }
 
+
+// driver
 int main () 
 {
   // init
   setup();
   Profile profile(API_KEY);
 
+  // main loop
   profile.loop();
 
+  // exit 
   std::cout << "See you next time, " << profile.username << "\n\n";
   return 0;
 }
