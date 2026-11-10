@@ -31,6 +31,8 @@
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠛⠛⠛⠛⠿⠿⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀
 
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 450
 
 // STD stuff
 #include <iostream>
@@ -41,7 +43,8 @@
 
 // External dependencies 
 #include <cpr/cpr.h>
-#include "dotenv.h" // for retreiving my Hevy API key
+#include "dotenv.h" // for retreiving my Hevy API 
+#include "raylib/src/raylib.h"
 
 // My API System
 #include "profile.h"
@@ -57,6 +60,11 @@ void setup()
   API_KEY = env.get("API_KEY");
 }
 
+void guiLoop()
+{
+  
+}
+
 
 // driver
 int main () 
@@ -64,9 +72,18 @@ int main ()
   // init
   setup();
   Profile profile(API_KEY);
+  InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Gabriel's Personal API System");
+  SetTargetFPS(60);
 
   // main loop
   profile.loop();
+  
+  while (!WindowShouldClose())
+  {
+    BeginDrawing();
+      ClearBackground(RAYWHITE);
+    EndDrawing();
+  }
 
   // exit 
   std::cout << "\n\nSee you next time, " << profile.username << "\n\n";
