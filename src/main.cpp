@@ -69,6 +69,6 @@ int main ()
   profile.loop();
 
   // exit 
-  std::cout << "See you next time, " << profile.username << "\n\n";
+  std::cout << "\n\nSee you next time, " << profile.username << "\n\n";
   return 0;
 }

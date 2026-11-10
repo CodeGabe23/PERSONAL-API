@@ -53,11 +53,24 @@ public:
   
   std::string getDate()
   {
-    auto now = std::chrono:system_clock::now();
+    auto now = std::chrono::system_clock::now();
 
     return std::format("{:%Y-%m-%d}", now);
   }
 
+  void writeLocalData()
+  {
+    std::ofstream file("userdata.json", std::ios::out | std::ios::trunc);
+    json newData = {
+      {"latest_date_fetch", getDate()},
+      {"username", username},
+      {"weight_kg", weight_kg},
+      {"totalWorkouts", totalWorkouts}
+    };
+
+
+    file << newData.dump(4) << std::endl;
+  }
 
   int checkLocalData()
   {
@@ -78,7 +91,7 @@ public:
 
     json data = json::parse(rawData);
 
-    if (data["latest_date_fetch"] == "" || data["latest_date_fetch"] == getDate())
+    if (data["latest_date_fetch"] == "" || data["latest_date_fetch"] != getDate())
     {
       std::cout << "Fetching latest data as currently it is outdated..\n";
       // calling API: fill in Profile data
@@ -90,6 +103,9 @@ public:
     else
     {
       // TODO:IF the latest data is already in userdata.json, then retrieve it from there locally!
+      username = data["username"];
+      weight_kg = data["weight_kg"];
+      totalWorkouts = data["totalWorkouts"];
     }
 
     file.close();
@@ -202,21 +218,33 @@ public:
     {
       std::string userInput = greetUser();
 
-      if (userInput == "3") break;
+      if (userInput == "3") 
+      {
+        writeLocalData();
+        break;
+      }
 
       else if (userInput == "1") 
       {
-        std::cout << "Your have finished '" << totalWorkouts << "' workouts total! Well done :)\n";
+        std::cout << "\nYour have finished '" << totalWorkouts << "' workouts total! Well done :)\n";
       }
 
       else if (userInput == "2")
       {
-        std::cout << "Your current weight is: " << weight_kg << "kg\n";
+        std::cout << "\nYour current weight is: " << weight_kg << "kg\n";
       }
 
       else if (userInput == "4")
       {
         std::cout << "\n\n--- Fetching latest data.. ---\n\n";
+       
+        getWorkoutCount();
+        getWeight();
+        getUsername();
+  
+        writeLocalData();
+
+        std::cout << "\n\n--- Finished fetching data! ---\n\n";
       }
 
       std::cout << std::endl << std::endl;
