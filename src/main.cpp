@@ -62,7 +62,7 @@ void setup()
 
 void guiLoop()
 {
-  
+  // TODO: add 4 buttons for each action so far
 }
 
 
