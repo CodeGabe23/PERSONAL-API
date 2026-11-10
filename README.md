@@ -1,7 +1,6 @@
 #### URGENT TODO:
-- Cache data locally so we don't have to call API absolutely each time the app is run.
 - add simple GUI with Raylib
-- add function to retrieve recent workouts aND
+- add function to retrieve recent workouts
 
 ## About this project
 This project is focused on making an API just about me for me. It will track my health stats and progressions(workouts, PRs, calisthenics), and other things about me to see trends over time on a dashboard.
